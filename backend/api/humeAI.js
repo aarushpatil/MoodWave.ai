@@ -1,18 +1,17 @@
 const axios = require("axios");
-const sdk = require("api")("@hume/v0#4jrag2glk1nk2de");
 
 const imageToBase64 = require("image-to-base64");
 const path = require("path");
 
 async function startJob(imageBase64) {
   try {
-    //Backup conversion DONT DELETE
+    //-------------------------------------Backup conversion DONT DELETE
     // const imagePath = path.join(__dirname, "../temp/download.jpg");
     // const convertedBase64 = await imageToBase64(imagePath);
+
     const jpegBase64 = imageBase64;
     const model_configurations = {
       callback_url: null,
-
       urls: [],
       models: {
         face: {
