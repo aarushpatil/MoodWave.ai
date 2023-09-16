@@ -1,10 +1,10 @@
 const readline = require('readline')
 //open ai configuration
 const { Configuration, OpenAIApi } = require('openai')
-require('dotenv').config()
+// require('dotenv').config()
 
 const configuration = new Configuration({
-  apiKey: process.env.OPEN_AI_KEY,
+  apiKey: "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",
 })
 
 const openai = new OpenAIApi(configuration)
@@ -16,10 +16,10 @@ const generateMeta = async (mood) => {
     messages: [
       {
         role: 'user',
-        content: `Give me 5 songs for the following mood: ${mood} in this format: songName by songArtist, songName by songArtist`
+        content: `Give me 10 new songs for the following mood: ${mood} in this format: songName by songArtist, songName by songArtist`
       }
     ],
-    max_tokens: 100
+    max_tokens: 250
   })
   const response = songs.data.choices[0].message;
   console.log(response)
@@ -30,29 +30,22 @@ const generateMeta = async (mood) => {
   // Split the input string into lines
 const lines = response.content.split('\n').filter(line => line.trim() !== '');
 
-const title = [];
-const author = [];
+const titles = [];
+const authors = [];
 
 // Loop through the lines and extract songs and authors
 lines.forEach(line => {
   const tempArr = line.split("\"");
-  title.push(tempArr[1]);
+  titles.push(tempArr[1]);
 
   const temp2 = tempArr[2].split("by ");
-  author.push(temp2[1]);
+  authors.push(temp2[1]);
 });
 
-console.log(title)
-console.log(author)
-
-const obj = {title: "" + title[1]};
-
-console.log("****************************")
+// console.log(titles)
+// console.log(authors)
+return {titles, authors};
 }
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-})
-
-rl.question("Enter the mood: \n", (title) => generateMeta(title))
+// generateMeta("happy")
+module.exports = {generateMeta};
