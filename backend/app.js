@@ -30,7 +30,7 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://capybaraspace.com",
+    origin: "github.com",
     credentials: true,
   })
 );
