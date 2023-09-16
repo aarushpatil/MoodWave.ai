@@ -31,7 +31,7 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    origin: "github.com",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -54,7 +54,7 @@ app.post("/callback", (req, res) => {
   res.status(200).send("Callback received!");
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const start = async () => {
   try {

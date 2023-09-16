@@ -3,15 +3,17 @@ const sdk = require("api")("@hume/v0#4jrag2glk1nk2de");
 
 const imageToBase64 = require("image-to-base64");
 const path = require("path");
-async function startJob() {
-  try {
-    const imagePath = path.join(__dirname, "../temp/download.jpg");
-    const jpegBase64 = await imageToBase64(imagePath);
 
+async function startJob(imageBase64) {
+  try {
+    //Backup conversion DONT DELETE
+    // const imagePath = path.join(__dirname, "../temp/download.jpg");
+    // const convertedBase64 = await imageToBase64(imagePath);
+    const jpegBase64 = imageBase64;
     const model_configurations = {
       callback_url: null,
 
-      urls: ["https://iep.utm.edu/wp-content/media/hume-bust.jpg"],
+      urls: [],
       models: {
         face: {
           fps_pred: 3,
@@ -42,7 +44,7 @@ async function startJob() {
       notify: false,
     };
     const model_config = JSON.stringify(model_configurations);
-    console.log("Trying to access:", imagePath);
+
     const options = {
       method: "POST",
       url: "https://api.hume.ai/v0/batch/jobs",
