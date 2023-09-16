@@ -9,26 +9,39 @@ async function startJob() {
     const jpegBase64 = await imageToBase64(imagePath);
 
     const model_configurations = {
+      callback_url: null,
+
+      urls: ["https://iep.utm.edu/wp-content/media/hume-bust.jpg"],
       models: {
         face: {
           fps_pred: 3,
           prob_threshold: 0.99,
           identify_faces: false,
           min_face_size: 60,
+          facs: null,
+          descriptions: null,
           save_faces: false,
         },
+        burst: {},
         prosody: {
           granularity: "utterance",
           identify_speakers: false,
-          window: { length: 4, step: 1 },
+          window: null,
         },
-        language: { granularity: "word", identify_speakers: false },
-        ner: { identify_speakers: false },
+        language: {
+          granularity: "word",
+          identify_speakers: false,
+          sentiment: null,
+          toxicity: null,
+        },
+        ner: {
+          identify_speakers: false,
+        },
+        facemesh: {},
       },
-      transcription: { language: null },
       notify: false,
     };
-    const model_config = {};
+    const model_config = JSON.stringify(model_configurations);
     console.log("Trying to access:", imagePath);
     const options = {
       method: "POST",
