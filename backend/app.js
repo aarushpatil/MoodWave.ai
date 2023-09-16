@@ -14,8 +14,8 @@ const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 
 //router imports
-const Posts = require("./routes/postsRoutes");
-const Auth = require("./routes/authRoutes");
+const Song = require("./routes/songRoute");
+const Image = require("./routes/imageRoute");
 
 // mongodb connecton import
 const connectDB = require("./db/connect");
@@ -43,8 +43,8 @@ app.use(express.static("./public"));
 app.use(fileUpload());
 
 // router activation
-app.use("/api/v1/auth", Auth);
-app.use("/api/v1/posts", Posts);
+app.use("/api/v1/image", Image);
+app.use("/api/v1/songs", Song);
 
 const port = process.env.PORT || 3000;
 

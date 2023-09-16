@@ -3,6 +3,6 @@ const router = express.Router();
 //
 const { image } = require("../controllers/imageController.js");
 
-router.route("/image").post(image);
+router.route("/").post(image);
 
 module.exports = router;
