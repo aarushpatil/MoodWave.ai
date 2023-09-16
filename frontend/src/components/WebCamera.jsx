@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Webcam from "react-webcam";
 import { AiOutlineCamera } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
-
+import { useEffect } from "react";
+import axios from "axios";
 // const WebcamComponent = () => <Webcam />;
 
 const videoConstraints = {
@@ -17,9 +18,21 @@ const WebcamCapture = () => {
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
+    console.log(typeof imageSrc);
     setImage(imageSrc);
   }, []);
 
+  useEffect(() => {
+    console.log("image evaluating");
+    async function evaluateEmotion() {
+      if (image !== "") {
+        const response = await axios.get("https://localhost:3000/api/v1/image");
+        const data = response.data;
+        console.log(data);
+      }
+    }
+    evaluateEmotion();
+  }, [image]);
   return (
     <div>
       <div className="">

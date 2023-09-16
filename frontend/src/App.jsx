@@ -6,13 +6,13 @@ import Emotions from "./components/Emotions";
 
 function App() {
   // const [loading, setLoading] = useState(false);
-  const [showEmotion, setShowEmotioin] = useState(false);
+  const [showEmotion, setShowEmotion] = useState(false);
   const [showCam, setShowCam] = useState(true);
   // const [showSongs, setShowSongs] = useState(false);
 
   const submitForm = () => {
     setShowCam(!showCam);
-    setShowEmotioin(!showEmotion);
+    setShowEmotion(!showEmotion);
   };
 
   //trying to show different content other than the camera and capture button
