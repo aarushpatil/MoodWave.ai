@@ -39,7 +39,7 @@ const WebcamCapture = () => {
   }, [image]);
   return (
     <div>
-      <div className="">
+      <div className="w-full">
         {image === "" ? (
           <Webcam
             audio={false}
