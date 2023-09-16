@@ -11,8 +11,7 @@ const videoConstraints = {
   facingMode: "user",
 };
 
-const WebcamCapture = () => {
-  const [image, setImage] = useState("");
+const WebcamCapture = ({ image, setImage }) => {
   const webcamRef = React.useRef(null);
 
   const capture = React.useCallback(() => {
@@ -21,22 +20,6 @@ const WebcamCapture = () => {
     setImage(imageSrc);
   }, []);
 
-  useEffect(() => {
-    async function evaluateEmotion() {
-      if (image !== "") {
-        console.log("image evaluating");
-        const imageCleaned = image;
-        console.log(imageCleaned);
-        const response = await axios.post(
-          "http://localhost:4000/api/v1/image/url",
-          { image: imageCleaned }
-        );
-        const data = response.data;
-        console.log(data);
-      }
-    }
-    evaluateEmotion();
-  }, [image]);
   return (
     <div>
       <div className="w-full">

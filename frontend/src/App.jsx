@@ -13,20 +13,23 @@ function App() {
   const [submitImage, setSubmitImage] = useState(false);
   const [image, setImage] = useState("");
   // const [showSongs, setShowSongs] = useState(false);
-  const [emotionJSON, setEmotionJSON] = useState({});
+  const [emotionJSON, setEmotionJSON] = useState([]);
 
   const State1 = () => {
     setShowCam(true);
     setShowEmotion(false);
     setShowSongs(false);
+    setImage("");
   };
 
   const State2 = () => {
     setShowCam(false);
     setShowEmotion(true);
     setShowSongs(false);
+    setSubmitImage(!submitImage);
   };
   const State3 = () => {
+    setEmotionJSON([]);
     setShowCam(false);
     setShowEmotion(false);
     setShowSongs(true);
@@ -40,14 +43,14 @@ function App() {
         console.log("image evaluating");
 
         const response = await axios.post(
-          "http://localhost:4000/api/v1/image",
+          "http://localhost:4000/api/v1/image/url",
           { image: image }
         );
-        if (response.ok) {
-          const data = response.data;
-          setEmotionJSON(data);
-          setSubmitImage(!submitImage);
-        }
+
+        const data = response.data;
+        console.log(data);
+        setEmotionJSON(data);
+        setSubmitImage(!submitImage);
       }
     }
 
@@ -94,7 +97,7 @@ function App() {
                 Scan
               </button>
             </div>
-          ) : showEmotion ? (
+          ) : showEmotion && emotionJSON ? (
             <div className="pt-10 flex justify-center">
               <button
                 type="submit"
