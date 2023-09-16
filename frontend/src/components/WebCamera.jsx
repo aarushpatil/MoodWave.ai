@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Webcam from "react-webcam";
 import { AiOutlineCamera } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
-
-// const WebcamComponent = () => <Webcam />;
+import { useEffect } from "react";
+import axios from "axios";
 
 const videoConstraints = {
-  width: 220,
-  height: 220,
+  width: 10000,
+  height: 10000,
   facingMode: "user",
 };
 
@@ -17,12 +17,29 @@ const WebcamCapture = () => {
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
+
     setImage(imageSrc);
   }, []);
 
+  useEffect(() => {
+    async function evaluateEmotion() {
+      if (image !== "") {
+        console.log("image evaluating");
+        const imageCleaned = image;
+        console.log(imageCleaned);
+        const response = await axios.post(
+          "http://localhost:4000/api/v1/image/url",
+          { image: imageCleaned }
+        );
+        const data = response.data;
+        console.log(data);
+      }
+    }
+    evaluateEmotion();
+  }, [image]);
   return (
     <div>
-      <div className="">
+      <div className="w-full">
         {image === "" ? (
           <Webcam
             audio={false}

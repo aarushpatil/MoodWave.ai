@@ -1,6 +1,5 @@
 require("dotenv").config();
-const { EventEmitter } = require("events");
-const eventEmitter = new EventEmitter();
+
 // express webserver main import
 const express = require("express");
 const app = express();
@@ -13,6 +12,8 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
+const cloudinary = require("cloudinary").v2;
+const bodyParser = require("body-parser");
 
 //router imports
 const Song = require("./routes/songRoute");
@@ -31,30 +32,25 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    origin: "github.com",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
-
+app.use(bodyParser.json({ limit: "10mb" }));
 app.use(express.json());
 app.use(express.static("./public"));
 app.use(fileUpload());
-
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
 // router activation
 app.use("/api/v1/image", Image);
 app.use("/api/v1/songs", Song);
 
-// This is the callback URL route for the ML server
-app.post("/callback", (req, res) => {
-  console.log("Received callback:", req.body);
-
-  // Emit the event with the received data
-  eventEmitter.emit("callbackReceived", req.body);
-
-  res.status(200).send("Callback received!");
-});
-
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const start = async () => {
   try {
