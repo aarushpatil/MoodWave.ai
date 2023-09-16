@@ -1,4 +1,5 @@
 const hume = require("../api/humeAI");
+const cloudinary = require("cloudinary");
 
 const image = async (req, res) => {
   try {
