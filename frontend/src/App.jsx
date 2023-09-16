@@ -3,24 +3,27 @@ import logo from "./moodwave.png";
 import Cam from "./components/WebCamera";
 import { useState } from "react";
 import Emotions from "./components/Emotions";
-
+import Songs from "./components/Songs";
 function App() {
-  // const [loading, setLoading] = useState(false);
-  const [showEmotion, setShowEmotioin] = useState(false);
   const [showCam, setShowCam] = useState(true);
-  // const [showSongs, setShowSongs] = useState(false);
+  const [showSongs, setShowSongs] = useState(false);
+  const [showEmotion, setShowEmotion] = useState(false);
 
-  const submitForm = () => {
-    setShowCam(!showCam);
-    setShowEmotioin(!showEmotion);
+  const toState2 = () => {
+    setShowCam(false);
+    setShowEmotion(true);
+    setShowSongs(false);
   };
-
-  //trying to show different content other than the camera and capture button
-  //the different content would be the data retrieved from api backend
-
-  //h-screen is the height of the most outer div for the background color
-  //When the size of the camera increases, the generate button and image overflows
-  //out of the outer-most div
+  const toState3 = () => {
+    setShowCam(false);
+    setShowEmotion(false);
+    setShowSongs(true);
+  };
+  const toState1 = () => {
+    setShowCam(true);
+    setShowEmotion(false);
+    setShowSongs(false);
+  };
 
   return (
     <>
@@ -31,19 +34,43 @@ function App() {
 
         <div className="px-5 flex justify-center flex-col items-center">
           <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
-            {showCam ? <Cam /> : <Emotions />}
+            {showCam ? <Cam /> : showEmotion ? <Emotions /> : <Songs />}
           </div>
 
-          <div className="pt-10 flex justify-center">
-            <button
-              type="submit"
-              id="login-button"
-              onClick={(e) => submitForm(e)}
-              className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-            >
-              Generate
-            </button>
-          </div>
+          {showCam ? (
+            <div className="pt-10 flex justify-center">
+              <button
+                type="submit"
+                id="login-button"
+                onClick={(e) => toState2(e)}
+                className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
+              >
+                Scan
+              </button>
+            </div>
+          ) : showEmotion ? (
+            <div className="pt-10 flex justify-center">
+              <button
+                type="submit"
+                id="login-button"
+                onClick={(e) => toState3(e)}
+                className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
+              >
+                Generate
+              </button>
+            </div>
+          ) : (
+            <div className="pt-10 flex justify-center">
+              <button
+                type="submit"
+                id="login-button"
+                onClick={(e) => toState1(e)}
+                className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
+              >
+                New Face!
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
