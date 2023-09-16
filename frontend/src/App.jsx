@@ -2,16 +2,18 @@ import "./App.css";
 import logo from "./moodwave.png";
 import Cam from "./components/WebCamera";
 import { useState } from "react";
-
-const submitForm = () => {
-  alert("Form submitted");
-};
+import Emotions from "./components/Emotions";
 
 function App() {
   // const [loading, setLoading] = useState(false);
-  // const [showEmotion, setShowEmotioin] = useState(false);
-  // const [showCam, setShowCam] = useState(false);
+  const [showEmotion, setShowEmotioin] = useState(false);
+  const [showCam, setShowCam] = useState(true);
   // const [showSongs, setShowSongs] = useState(false);
+
+  const submitForm = () => {
+    setShowCam(!showCam);
+    setShowEmotioin(!showEmotion);
+  };
 
   //trying to show different content other than the camera and capture button
   //the different content would be the data retrieved from api backend
@@ -27,10 +29,11 @@ function App() {
           <img src={logo} alt="moodwave" className=" max-w-10 max-h-20" />
         </div>
 
-        <div className="px-5  flex justify-center flex-col items-center">
-          <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-3 w-full">
-            <Cam />
+        <div className="px-5 flex justify-center flex-col items-center">
+          <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
+            {showCam ? <Cam /> : <Emotions />}
           </div>
+
           <div className="pt-10 flex justify-center">
             <button
               type="submit"
