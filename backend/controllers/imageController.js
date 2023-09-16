@@ -1,3 +1,5 @@
+const Jio = require("../api/jioSong");
+
 const image = async (req, res) => {
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
@@ -11,6 +13,8 @@ const image = async (req, res) => {
   sampleFile.mv(uploadPath, function (err) {
     if (err) return res.status(500).send(err);
   });
+
+  const emotion = await Jio();
 };
 module.exports = {
   image,
