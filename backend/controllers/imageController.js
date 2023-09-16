@@ -1,5 +1,6 @@
 const hume = require("../api/humeAI");
-
+const { EventEmitter } = require("events");
+const eventEmitter = new EventEmitter();
 const image = async (req, res) => {
   // if (!req.files || Object.keys(req.files).length === 0) {
   //     return res.status(400).send("No files were uploaded.");
@@ -16,7 +17,6 @@ const image = async (req, res) => {
   const job_id = await hume.startJob();
   console.log("Job IDD", job_id);
   const emotion = await hume.getPredictions(job_id);
-
   res.json(emotion);
 };
 module.exports = {

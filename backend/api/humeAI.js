@@ -1,11 +1,12 @@
 const axios = require("axios");
+const { TIMEOUT } = require("dns");
 const imageToBase64 = require("image-to-base64");
 const path = require("path");
 async function startJob() {
   try {
     const imagePath = path.join(__dirname, "../temp/download.jpg");
     const jpegBase64 = await imageToBase64(imagePath);
-    const callback_URL = "";
+    const callback_URL = "https://moodwave-adam.onrender.com" + "/callback";
     console.log("Trying to access:", imagePath);
     const options = {
       method: "POST",
@@ -29,6 +30,9 @@ async function startJob() {
 
 async function getPredictions(jobID) {
   try {
+    setTimeout(function () {
+      console.log("This will be printed after 3 seconds");
+    }, 5000);
     const options = {
       method: "GET",
       url: `https://api.hume.ai/v0/batch/jobs/${jobID}/predictions`,
@@ -37,6 +41,7 @@ async function getPredictions(jobID) {
         "X-Hume-Api-Key": "xYkGp5L5I7ATd8BvhRDKsY9FxYGUztgHA2f8GSu8DpZAX91E",
       },
     };
+
     const response = await axios.request(options);
     const data = response.data;
     return data;
