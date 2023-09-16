@@ -6,8 +6,8 @@ import { BsTrash } from "react-icons/bs";
 // const WebcamComponent = () => <Webcam />;
 
 const videoConstraints = {
-  width: 220,
-  height: 220,
+  width: 10000,
+  height: 10000,
   facingMode: "user",
 };
 
