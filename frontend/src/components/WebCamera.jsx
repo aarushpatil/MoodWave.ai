@@ -26,10 +26,10 @@ const WebcamCapture = () => {
     async function evaluateEmotion() {
       if (image !== "") {
         console.log("image evaluating");
-        const imageCleaned = image.split(",")[1];
+        const imageCleaned = image;
         console.log(imageCleaned);
         const response = await axios.post(
-          "http://localhost:4000/api/v1/image",
+          "http://localhost:4000/api/v1/image/url",
           { image: imageCleaned }
         );
         const data = response.data;

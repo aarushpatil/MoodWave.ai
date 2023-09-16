@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 //
-const { image } = require("../controllers/imageController.js");
+const { image, imageURL } = require("../controllers/imageController.js");
 
 router.route("/").post(image);
+router.route("/url").post(imageURL);
 
 module.exports = router;
