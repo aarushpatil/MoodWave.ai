@@ -17,9 +17,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 const Song = require("./routes/songRoute");
 const Image = require("./routes/imageRoute");
 
-// mongodb connecton import
-const connectDB = require("./db/connect");
-
 // logging
 app.use(morgan("tiny"));
 // middle ware activation

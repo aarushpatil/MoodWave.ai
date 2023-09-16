@@ -1,4 +1,4 @@
-const Jio = require("../api/jioSong");
+const hume = require("../api/humeAI");
 
 const image = async (req, res) => {
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -14,7 +14,10 @@ const image = async (req, res) => {
     if (err) return res.status(500).send(err);
   });
 
-  const emotion = await Jio();
+  const job = await hume.startJob();
+  const emotion = await hume.getPredictions(job.job_id);
+
+  res.json(emotion);
 };
 module.exports = {
   image,
