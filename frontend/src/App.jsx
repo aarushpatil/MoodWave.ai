@@ -38,11 +38,10 @@ function App() {
     async function evaluateEmotion() {
       if (image !== "" && submitImage) {
         console.log("image evaluating");
-        const imageCleaned = image.split(",")[1];
-        console.log(imageCleaned);
+
         const response = await axios.post(
           "http://localhost:4000/api/v1/image",
-          { image: imageCleaned }
+          { image: image }
         );
         if (response.ok) {
           const data = response.data;
@@ -78,7 +77,7 @@ function App() {
                 setImage={setImage}
               />
             ) : showEmotion ? (
-              <Emotions />
+              <Emotions emotionJSON={emotionJSON} />
             ) : (
               <Songs />
             )}
