@@ -6,7 +6,6 @@ const app = express();
 
 //middleware imports
 const morgan = require("morgan");
-const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const rateLimiter = require("express-rate-limit");
 const helmet = require("helmet");
