@@ -1,0 +1,249 @@
+[
+  {
+    "source": {
+      "filename": null,
+      "content_type": null,
+      "md5sum": "0d45cac952e6e61bc684af567fd4b676",
+      "type": "file"
+    },
+    "results": {
+      "predictions": [
+        {
+          "file": "unnamed-file-md5sum=0d45cac952e6e61bc684af567fd4b676",
+          "file_type": "text",
+          "models": {
+            "language": {
+              "metadata": null,
+              "grouped_predictions": [
+                {
+                  "id": "unknown",
+                  "predictions": [
+                    {
+                      "text": "data:image/jpeg;name=download.jpg;base64,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",
+                      "position": { "begin": 0, "end": 4057 },
+                      "time": null,
+                      "confidence": null,
+                      "speaker_confidence": null,
+                      "emotions": [
+                        { "name": "Admiration", "score": 0.002411474008113146 },
+                        { "name": "Adoration", "score": 0.0036845188587903976 },
+                        {
+                          "name": "Aesthetic Appreciation",
+                          "score": 0.007936538197100163
+                        },
+                        { "name": "Amusement", "score": 0.02742641791701317 },
+                        { "name": "Anger", "score": 0.03521382808685303 },
+                        { "name": "Annoyance", "score": 0.4601132869720459 },
+                        { "name": "Anxiety", "score": 0.02423834800720215 },
+                        { "name": "Awe", "score": 0.002383651677519083 },
+                        {
+                          "name": "Awkwardness",
+                          "score": 0.028737012296915054
+                        },
+                        { "name": "Boredom", "score": 0.14555780589580536 },
+                        { "name": "Calmness", "score": 0.036887526512145996 },
+                        {
+                          "name": "Concentration",
+                          "score": 0.03075099177658558
+                        },
+                        { "name": "Confusion", "score": 0.16221340000629425 },
+                        {
+                          "name": "Contemplation",
+                          "score": 0.032496023923158646
+                        },
+                        { "name": "Contempt", "score": 0.032200880348682404 },
+                        {
+                          "name": "Contentment",
+                          "score": 0.006135834380984306
+                        },
+                        { "name": "Craving", "score": 0.0861903503537178 },
+                        { "name": "Desire", "score": 0.008637892082333565 },
+                        {
+                          "name": "Determination",
+                          "score": 0.028455551713705063
+                        },
+                        {
+                          "name": "Disappointment",
+                          "score": 0.22461934387683868
+                        },
+                        { "name": "Disapproval", "score": 0.05907784774899483 },
+                        { "name": "Disgust", "score": 0.011199414730072021 },
+                        { "name": "Distress", "score": 0.07154089957475662 },
+                        { "name": "Doubt", "score": 0.013706368394196033 },
+                        { "name": "Ecstasy", "score": 0.0021517612040042877 },
+                        {
+                          "name": "Embarrassment",
+                          "score": 0.004481690935790539
+                        },
+                        {
+                          "name": "Empathic Pain",
+                          "score": 0.012482148595154285
+                        },
+                        { "name": "Enthusiasm", "score": 0.02786938101053238 },
+                        {
+                          "name": "Entrancement",
+                          "score": 0.008021879941225052
+                        },
+                        { "name": "Envy", "score": 0.006992862094193697 },
+                        { "name": "Excitement", "score": 0.014770351350307465 },
+                        { "name": "Fear", "score": 0.003050024388357997 },
+                        { "name": "Gratitude", "score": 0.0013238987885415554 },
+                        { "name": "Guilt", "score": 0.007998507469892502 },
+                        { "name": "Horror", "score": 0.0013938372721895576 },
+                        { "name": "Interest", "score": 0.06087876856327057 },
+                        { "name": "Joy", "score": 0.004168185405433178 },
+                        { "name": "Love", "score": 0.0033824944403022528 },
+                        { "name": "Nostalgia", "score": 0.002537987194955349 },
+                        { "name": "Pain", "score": 0.016999101266264915 },
+                        { "name": "Pride", "score": 0.0013009427348151803 },
+                        { "name": "Realization", "score": 0.04211876913905144 },
+                        { "name": "Relief", "score": 0.0022930584382265806 },
+                        { "name": "Romance", "score": 0.0026782748755067587 },
+                        { "name": "Sadness", "score": 0.03845418989658356 },
+                        { "name": "Sarcasm", "score": 0.017231570556759834 },
+                        {
+                          "name": "Satisfaction",
+                          "score": 0.00794820487499237
+                        },
+                        { "name": "Shame", "score": 0.007872283458709717 },
+                        {
+                          "name": "Surprise (negative)",
+                          "score": 0.04220058023929596
+                        },
+                        {
+                          "name": "Surprise (positive)",
+                          "score": 0.0038414732553064823
+                        },
+                        { "name": "Sympathy", "score": 0.013909129425883293 },
+                        { "name": "Tiredness", "score": 0.05023193359375 },
+                        { "name": "Triumph", "score": 0.0018597841262817383 }
+                      ],
+                      "sentiment": null,
+                      "toxicity": null
+                    }
+                  ]
+                }
+              ]
+            },
+            "ner": {
+              "metadata": null,
+              "grouped_predictions": [
+                {
+                  "id": "unknown",
+                  "predictions": [
+                    {
+                      "entity": "base64",
+                      "position": { "begin": 34, "end": 40 },
+                      "entity_confidence": 1,
+                      "support": 256,
+                      "uri": "http://dbpedia.org/resource/Base64",
+                      "link_word": "data:image/jpeg;name=download.jpg;base64,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",
+                      "time": null,
+                      "confidence": null,
+                      "speaker_confidence": null,
+                      "emotions": [
+                        { "name": "Admiration", "score": 0.002411474008113146 },
+                        { "name": "Adoration", "score": 0.0036845188587903976 },
+                        {
+                          "name": "Aesthetic Appreciation",
+                          "score": 0.007936538197100163
+                        },
+                        { "name": "Amusement", "score": 0.02742641791701317 },
+                        { "name": "Anger", "score": 0.03521382808685303 },
+                        { "name": "Annoyance", "score": 0.4601132869720459 },
+                        { "name": "Anxiety", "score": 0.02423834800720215 },
+                        { "name": "Awe", "score": 0.002383651677519083 },
+                        {
+                          "name": "Awkwardness",
+                          "score": 0.028737012296915054
+                        },
+                        { "name": "Boredom", "score": 0.14555780589580536 },
+                        { "name": "Calmness", "score": 0.036887526512145996 },
+                        {
+                          "name": "Concentration",
+                          "score": 0.03075099177658558
+                        },
+                        { "name": "Confusion", "score": 0.16221340000629425 },
+                        {
+                          "name": "Contemplation",
+                          "score": 0.032496023923158646
+                        },
+                        { "name": "Contempt", "score": 0.032200880348682404 },
+                        {
+                          "name": "Contentment",
+                          "score": 0.006135834380984306
+                        },
+                        { "name": "Craving", "score": 0.0861903503537178 },
+                        { "name": "Desire", "score": 0.008637892082333565 },
+                        {
+                          "name": "Determination",
+                          "score": 0.028455551713705063
+                        },
+                        {
+                          "name": "Disappointment",
+                          "score": 0.22461934387683868
+                        },
+                        { "name": "Disapproval", "score": 0.05907784774899483 },
+                        { "name": "Disgust", "score": 0.011199414730072021 },
+                        { "name": "Distress", "score": 0.07154089957475662 },
+                        { "name": "Doubt", "score": 0.013706368394196033 },
+                        { "name": "Ecstasy", "score": 0.0021517612040042877 },
+                        {
+                          "name": "Embarrassment",
+                          "score": 0.004481690935790539
+                        },
+                        {
+                          "name": "Empathic Pain",
+                          "score": 0.012482148595154285
+                        },
+                        { "name": "Enthusiasm", "score": 0.02786938101053238 },
+                        {
+                          "name": "Entrancement",
+                          "score": 0.008021879941225052
+                        },
+                        { "name": "Envy", "score": 0.006992862094193697 },
+                        { "name": "Excitement", "score": 0.014770351350307465 },
+                        { "name": "Fear", "score": 0.003050024388357997 },
+                        { "name": "Gratitude", "score": 0.0013238987885415554 },
+                        { "name": "Guilt", "score": 0.007998507469892502 },
+                        { "name": "Horror", "score": 0.0013938372721895576 },
+                        { "name": "Interest", "score": 0.06087876856327057 },
+                        { "name": "Joy", "score": 0.004168185405433178 },
+                        { "name": "Love", "score": 0.0033824944403022528 },
+                        { "name": "Nostalgia", "score": 0.002537987194955349 },
+                        { "name": "Pain", "score": 0.016999101266264915 },
+                        { "name": "Pride", "score": 0.0013009427348151803 },
+                        { "name": "Realization", "score": 0.04211876913905144 },
+                        { "name": "Relief", "score": 0.0022930584382265806 },
+                        { "name": "Romance", "score": 0.0026782748755067587 },
+                        { "name": "Sadness", "score": 0.03845418989658356 },
+                        { "name": "Sarcasm", "score": 0.017231570556759834 },
+                        {
+                          "name": "Satisfaction",
+                          "score": 0.00794820487499237
+                        },
+                        { "name": "Shame", "score": 0.007872283458709717 },
+                        {
+                          "name": "Surprise (negative)",
+                          "score": 0.04220058023929596
+                        },
+                        {
+                          "name": "Surprise (positive)",
+                          "score": 0.0038414732553064823
+                        },
+                        { "name": "Sympathy", "score": 0.013909129425883293 },
+                        { "name": "Tiredness", "score": 0.05023193359375 },
+                        { "name": "Triumph", "score": 0.0018597841262817383 }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  }
+]

@@ -1,5 +1,6 @@
 require("dotenv").config();
-
+const { EventEmitter } = require("events");
+const eventEmitter = new EventEmitter();
 // express webserver main import
 const express = require("express");
 const app = express();
@@ -30,7 +31,7 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://capybaraspace.com",
+    origin: "github.com",
     credentials: true,
   })
 );
@@ -43,15 +44,13 @@ app.use(fileUpload());
 app.use("/api/v1/image", Image);
 app.use("/api/v1/songs", Song);
 
+// This is the callback URL route for the ML server
 app.post("/callback", (req, res) => {
-  const requestId = req.query.requestId;
-  if (!requestId) {
-    return res.status(400).send("Missing requestId");
-  }
-
   console.log("Received callback:", req.body);
 
-  eventEmitter.emit(`callbackReceived:${requestId}`, req.body);
+  // Emit the event with the received data
+  eventEmitter.emit("callbackReceived", req.body);
+
   res.status(200).send("Callback received!");
 });
 
