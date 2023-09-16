@@ -56,5 +56,3 @@ const rl = readline.createInterface({
 })
 
 rl.question("Enter the mood: \n", (title) => generateMeta(title))
-
-module.exports = songs
