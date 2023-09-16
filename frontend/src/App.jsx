@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-gradient-to-tr from-backgradientbot to-backgradienttop h-screen">
+      <div className="bg-gradient-to-r from-backgradientbot to-backgradienttop">
         <div className="flex items-center justify-center p-3 ">
           <img src={logo} alt="moodwave" className=" max-w-10 max-h-20" />
         </div>

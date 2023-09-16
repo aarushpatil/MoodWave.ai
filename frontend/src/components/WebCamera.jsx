@@ -18,15 +18,20 @@ const WebcamCapture = () => {
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-    console.log(typeof imageSrc);
+
     setImage(imageSrc);
   }, []);
 
   useEffect(() => {
-    console.log("image evaluating");
     async function evaluateEmotion() {
       if (image !== "") {
-        const response = await axios.get("https://localhost:3000/api/v1/image");
+        console.log("image evaluating");
+        const imageCleaned = image.split(",")[1];
+        console.log(imageCleaned);
+        const response = await axios.post(
+          "http://localhost:4000/api/v1/image",
+          { image: imageCleaned }
+        );
         const data = response.data;
         console.log(data);
       }
