@@ -43,6 +43,18 @@ app.use(fileUpload());
 app.use("/api/v1/image", Image);
 app.use("/api/v1/songs", Song);
 
+app.post("/callback", (req, res) => {
+  const requestId = req.query.requestId;
+  if (!requestId) {
+    return res.status(400).send("Missing requestId");
+  }
+
+  console.log("Received callback:", req.body);
+
+  eventEmitter.emit(`callbackReceived:${requestId}`, req.body);
+  res.status(200).send("Callback received!");
+});
+
 const port = process.env.PORT || 3000;
 
 const start = async () => {
