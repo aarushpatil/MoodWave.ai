@@ -1,8 +1,9 @@
 const hume = require("../api/humeAI");
+const cloudinary = require("cloudinary");
 
 const image = async (req, res) => {
   try {
-    const job_id = await hume.startJob();
+    const job_id = await hume.startJob(req.body.image);
     console.log("Job ID:", job_id);
 
     // Wait for the predictions to be ready

@@ -1,6 +1,5 @@
 require("dotenv").config();
-const { EventEmitter } = require("events");
-const eventEmitter = new EventEmitter();
+
 // express webserver main import
 const express = require("express");
 const app = express();
@@ -13,6 +12,7 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
+const cloudinary = require("cloudinary");
 
 //router imports
 const Song = require("./routes/songRoute");
@@ -31,7 +31,7 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    origin: "github.com",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -39,7 +39,12 @@ app.use(
 app.use(express.json());
 app.use(express.static("./public"));
 app.use(fileUpload());
-
+cloudinary.config({
+  cloud_name: "my_cloud_name",
+  api_key: "1234567890",
+  api_secret: "a676b67565c6767a6767d6767f676fe1",
+  secure: true,
+});
 // router activation
 app.use("/api/v1/image", Image);
 app.use("/api/v1/songs", Song);
@@ -54,7 +59,7 @@ app.post("/callback", (req, res) => {
   res.status(200).send("Callback received!");
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const start = async () => {
   try {

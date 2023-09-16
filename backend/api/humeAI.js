@@ -1,35 +1,49 @@
 const axios = require("axios");
-const sdk = require("api")("@hume/v0#4jrag2glk1nk2de");
 
 const imageToBase64 = require("image-to-base64");
 const path = require("path");
-async function startJob() {
-  try {
-    const imagePath = path.join(__dirname, "../temp/download.jpg");
-    const jpegBase64 = await imageToBase64(imagePath);
 
+async function startJob(imageBase64) {
+  try {
+    //-------------------------------------Backup conversion DONT DELETE
+    // const imagePath = path.join(__dirname, "../temp/download.jpg");
+    // const convertedBase64 = await imageToBase64(imagePath);
+
+    const jpegBase64 = imageBase64;
     const model_configurations = {
+      callback_url: null,
+      urls: [],
       models: {
         face: {
           fps_pred: 3,
           prob_threshold: 0.99,
           identify_faces: false,
           min_face_size: 60,
+          facs: null,
+          descriptions: null,
           save_faces: false,
         },
+        burst: {},
         prosody: {
           granularity: "utterance",
           identify_speakers: false,
-          window: { length: 4, step: 1 },
+          window: null,
         },
-        language: { granularity: "word", identify_speakers: false },
-        ner: { identify_speakers: false },
+        language: {
+          granularity: "word",
+          identify_speakers: false,
+          sentiment: null,
+          toxicity: null,
+        },
+        ner: {
+          identify_speakers: false,
+        },
+        facemesh: {},
       },
-      transcription: { language: null },
       notify: false,
     };
-    const model_config = {};
-    console.log("Trying to access:", imagePath);
+    const model_config = JSON.stringify(model_configurations);
+
     const options = {
       method: "POST",
       url: "https://api.hume.ai/v0/batch/jobs",
