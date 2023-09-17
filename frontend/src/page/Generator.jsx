@@ -1,45 +1,55 @@
-import Emotions from "../components/Emotions";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Cam from "../components/WebCamera";
-import Songs from "../components/Songs";
+
 import Banner from "../components/MoodWaveBanner";
+
+//SubPages
+import SubWebcam from "./subpage/Sub_WebCam";
+import SubEmotions from "./subpage/Sub_Emotions";
+import SubSongs from "./subpage/Sub_Songs";
 
 function Generator() {
   // const [loading, setLoading] = useState(false);
+  const [pagination, setPagination] = useState("webcam");
   const [showEmotion, setShowEmotion] = useState(false);
   const [showSongs, setShowSongs] = useState(false);
   const [showCam, setShowCam] = useState(true);
+
+  const [submitSongs, setSubmitSongs] = useState(false);
   const [submitImage, setSubmitImage] = useState(false);
   const [image, setImage] = useState("");
   // const [showSongs, setShowSongs] = useState(false);
   const [emotionJSON, setEmotionJSON] = useState([]);
   const [songsJSON, setSongsJSON] = useState([]);
+
   const ScanButton = () => {
     setShowCam(true);
     setShowEmotion(false);
     setShowSongs(false);
-    setImage("");
+    setSubmitImage(!submitImage);
+    setPagination("emotions");
   };
 
   const GenerateButton = () => {
     setShowCam(false);
     setShowEmotion(true);
     setShowSongs(false);
-    setSubmitImage(!submitImage);
+    setSubmitSongs(!submitSongs);
+    setPagination("songs");
   };
   const RedoButton = () => {
     setEmotionJSON([]);
     setShowCam(false);
     setShowEmotion(false);
     setShowSongs(true);
+    setPagination("webcam");
   };
 
-  //Make a call to the back
+  //SCANNER AND SEND TO BACK END
   useEffect(() => {
     //Function for backend call
     async function evaluateEmotion() {
-      if (image !== "" && submitImage) {
+      if (image !== "" && pagination === "emotions" && submitImage) {
         console.log("image evaluating");
 
         const response = await axios.post(
@@ -51,17 +61,19 @@ function Generator() {
         console.log(data);
         setEmotionJSON(data);
         setSubmitImage(!submitImage);
+        setImage("");
       }
     }
 
     //Call function
     evaluateEmotion();
-  }, [image, setEmotionJSON, submitImage]);
+  }, [image, setEmotionJSON, submitImage, pagination]);
 
+  //SONG SUGGESTER BACKEND
   useEffect(() => {
     //Function for backend call
     async function suggestSongs() {
-      if (emotionJSON.length > 0) {
+      if (emotionJSON.length > 0 && pagination === "songs" && submitSongs) {
         console.log("image evaluating");
 
         const response = await axios.post(
@@ -74,67 +86,45 @@ function Generator() {
         const data = response.data;
         console.log(data);
         setSongsJSON(data);
+        setSubmitSongs((show) => !show);
       }
     }
 
     //Call function
     suggestSongs();
-  }, [emotionJSON]);
+  }, [emotionJSON, pagination, submitSongs]);
 
   return (
     <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
       <Banner />
 
-      <div className="px-5 flex justify-center flex-col items-center">
-        <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
-          {showCam ? (
-            <Cam
-              setEmotionJSON={setEmotionJSON}
-              image={image}
-              setImage={setImage}
-            />
-          ) : showEmotion ? (
-            <Emotions emotionJSON={emotionJSON} />
-          ) : (
-            <Songs songsJSON={songsJSON} />
-          )}
-        </div>
-
-        {showCam ? (
-          <div className="pt-10 flex justify-center">
-            <button
-              type="submit"
-              id="login-button"
-              onClick={(e) => GenerateButton(e)}
-              className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-            >
-              Scan
-            </button>
-          </div>
-        ) : showEmotion && emotionJSON ? (
-          <div className="pt-10 flex justify-center">
-            <button
-              type="submit"
-              id="login-button"
-              onClick={(e) => RedoButton(e)}
-              className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-            >
-              Generate
-            </button>
-          </div>
-        ) : (
-          <div className="pt-10 flex justify-center">
-            <button
-              type="submit"
-              id="login-button"
-              onClick={(e) => ScanButton(e)}
-              className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-            >
-              Again
-            </button>
-          </div>
-        )}
-      </div>
+      <section className="px-5 flex justify-center flex-col items-center">
+        {(() => {
+          switch (pagination) {
+            case "webcam":
+              return (
+                <SubWebcam
+                  showCam={showCam}
+                  showEmotion={showEmotion}
+                  ScanButton={ScanButton}
+                  image={image}
+                  setImage={setImage}
+                />
+              );
+            case "emotions":
+              return (
+                <SubEmotions
+                  GenerateButton={GenerateButton}
+                  emotionJSON={emotionJSON}
+                />
+              );
+            case "songs":
+              return <SubSongs RedoButton={RedoButton} songsJSON={songsJSON} />;
+            default:
+              return null; // or you can return a default component or a 404 page
+          }
+        })()}
+      </section>
     </main>
   );
 }
