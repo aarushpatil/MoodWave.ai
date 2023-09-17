@@ -27,6 +27,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {/* here is where I will put footer */}
     </BrowserRouter>
   );
 }

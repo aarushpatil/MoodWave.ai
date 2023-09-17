@@ -1,6 +1,6 @@
 const Emotions = ({ emotionJSON }) => {
   return (
-    <div className="">
+    <div className="backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
       {emotionJSON && emotionJSON.length > 0 ? (
         emotionJSON.map((emotion) => {
           const { name, score } = emotion;
@@ -17,7 +17,7 @@ const Emotions = ({ emotionJSON }) => {
           );
         })
       ) : (
-        <h1>LOADING</h1>
+        <div className=" p-36 w-full text-center">LOADING</div>
       )}
     </div>
   );
