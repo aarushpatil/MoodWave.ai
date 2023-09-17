@@ -8,12 +8,12 @@ const Emotions = ({ emotionJSON }) => {
           const { name, score } = emotion;
           return (
             <div
-              className="grid grid-cols-3 text-[#F2EEE4] py-9 px-6 "
+              className="grid grid-cols-3 text-[#F2EEE4] py-9 px-3 "
               key={name}
             >
               <div className="font-semibold justify-self-start">{name}</div>
-              <div className="font-semibold justify-self-stretch">
-                <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+              <div className="font-semibold justify-self-stretch py-2">
+                <div className="w-full h-full bg-gray-200 rounded-full overflow-hidden">
                   <div
                     className={`h-full bg-green-500`}
                     style={{ width: `${Math.floor(score * 100)}%` }}
