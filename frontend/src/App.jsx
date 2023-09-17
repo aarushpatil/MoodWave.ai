@@ -72,7 +72,7 @@ function App() {
         </div>
 
         <div className="px-5 flex justify-center flex-col items-center">
-          <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 ">
+          <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
             {showCam ? (
               <Cam
                 setEmotionJSON={setEmotionJSON}
