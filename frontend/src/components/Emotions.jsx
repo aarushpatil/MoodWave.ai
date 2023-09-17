@@ -3,7 +3,7 @@ import loader from "../images/reload.png";
 const Emotions = ({ emotionJSON }) => {
   return (
     <div className="pt-10">
-      <div className="backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full max-w-max sm:max-w-xl md:max-w-xl">
+      <div className="backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full max-w-max sm:max-w-2xl md:max-w-2xl">
         {emotionJSON && emotionJSON.length > 0 ? (
           emotionJSON.map((emotion) => {
             const { name, score } = emotion;
