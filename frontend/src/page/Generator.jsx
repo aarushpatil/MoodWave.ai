@@ -45,7 +45,7 @@ function Generator() {
         try {
           console.log(image);
           const response = await axios.post(
-            "http://localhost:4000/api/v1/image/url",
+            "https://moodwave-adam.onrender.com/api/v1/image/url",
             { image: image }
           );
           console.log(response.headers);
@@ -72,7 +72,7 @@ function Generator() {
         try {
           console.log("song suggesting");
           const response = await axios.post(
-            "http://localhost:4000/api/v1/songs",
+            "https://moodwave-adam.onrender.com/api/v1/songs",
             {
               // assuming you want to send the same emotion name three times
               emotion: `${emotionJSON[0].name},${emotionJSON[1].name},${emotionJSON[2].name}`,
