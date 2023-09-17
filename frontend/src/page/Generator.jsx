@@ -91,7 +91,7 @@ function Generator() {
     }
 
     suggestSongs();
-  }, [pagination, emotionJSON]);
+  }, [pagination, emotionJSON, submitSongs]);
 
   return (
     <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop overflow-hidden pb-9 flex flex-col">
