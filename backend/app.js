@@ -23,7 +23,7 @@ const allowedOrigins = [
   "https://moodwave-ai-frontend.onrender.com",
   "http://localhost:3000",
 ];
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: allowedOrigins }));
 // logging
 app.use(morgan("tiny"));
 // middle ware activation
