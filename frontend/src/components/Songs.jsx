@@ -6,7 +6,9 @@ const Songs = ({ songsJSON }) => {
       {songsJSON.length > 0 ? (
         <div className="font-Lato grid grid-rows-3 grid-cols-2 w-full gap-4 text-white md:grid-rows-2 md:grid-cols-3">
           {songsJSON.map((song) => {
+            console.log(song);
             const { id, author, imageUrl, playUrl, title } = song;
+            console.log(playUrl);
             return (
               <div className="flex flex-col items-center" key={id}>
                 <a href={playUrl}>
