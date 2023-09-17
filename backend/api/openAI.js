@@ -12,7 +12,7 @@ const openai = new OpenAIApi(configuration);
 
 const generateMeta = async (mood, previousSongs) => {
   console.log("Enter song method");
-  let cont = `Give me 60 songs about ${mood}. In the format: songName by songArtist, songName by songArtist.`;
+  let cont = `Give me 30 songs about ${mood}. In the format: songName by songArtist, songName by songArtist.`;
   //    I already know these songs: ${Array.from(
   //     previousSongs
   //   ).join(", ")}`;
