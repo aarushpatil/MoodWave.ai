@@ -1,9 +1,9 @@
 import Emotions from "../components/Emotions";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Cam from "./components/WebCamera";
-import Songs from "./components/Songs";
-import Banner from "./components/MoodWaveBanner";
+import Cam from "../components/WebCamera";
+import Songs from "../components/Songs";
+import Banner from "../components/MoodWaveBanner";
 
 function Generator() {
   // const [loading, setLoading] = useState(false);
@@ -15,20 +15,20 @@ function Generator() {
   // const [showSongs, setShowSongs] = useState(false);
   const [emotionJSON, setEmotionJSON] = useState([]);
   const [songsJSON, setSongsJSON] = useState([]);
-  const State1 = () => {
+  const ScanButton = () => {
     setShowCam(true);
     setShowEmotion(false);
     setShowSongs(false);
     setImage("");
   };
 
-  const State2 = () => {
+  const GenerateButton = () => {
     setShowCam(false);
     setShowEmotion(true);
     setShowSongs(false);
     setSubmitImage(!submitImage);
   };
-  const State3 = () => {
+  const RedoButton = () => {
     setEmotionJSON([]);
     setShowCam(false);
     setShowEmotion(false);
@@ -61,7 +61,7 @@ function Generator() {
   useEffect(() => {
     //Function for backend call
     async function suggestSongs() {
-      if (emotionJSON) {
+      if (emotionJSON.length > 0) {
         console.log("image evaluating");
 
         const response = await axios.post(
@@ -82,7 +82,7 @@ function Generator() {
   }, [emotionJSON]);
 
   return (
-    <div className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
+    <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
       <Banner />
 
       <div className="px-5 flex justify-center flex-col items-center">
@@ -105,7 +105,7 @@ function Generator() {
             <button
               type="submit"
               id="login-button"
-              onClick={(e) => State2(e)}
+              onClick={(e) => GenerateButton(e)}
               className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
             >
               Scan
@@ -116,7 +116,7 @@ function Generator() {
             <button
               type="submit"
               id="login-button"
-              onClick={(e) => State3(e)}
+              onClick={(e) => RedoButton(e)}
               className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
             >
               Generate
@@ -127,7 +127,7 @@ function Generator() {
             <button
               type="submit"
               id="login-button"
-              onClick={(e) => State1(e)}
+              onClick={(e) => ScanButton(e)}
               className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
             >
               Again
@@ -135,7 +135,7 @@ function Generator() {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
 

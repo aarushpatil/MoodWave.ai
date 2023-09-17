@@ -1,13 +1,12 @@
 import "./App.css";
 
 //React Router
-import { Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Pages
 import Generator from "./page/Generator";
-import LandingPage from "./page/Landing";
-import AboutPage from "./page/AboutPage";
+import Landing from "./page/Landing";
+import About from "./page/About";
 import NotFound from "./page/NotFound";
 
 function App() {
@@ -21,11 +20,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/generator" element={<Generator />} />
 
         {/* Extra pages */}
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
