@@ -19,10 +19,6 @@ const bodyParser = require("body-parser");
 const Song = require("./routes/songRoute");
 const Image = require("./routes/imageRoute");
 
-const allowedOrigins = [
-  "https://moodwave-ai-frontend.onrender.com",
-  "http://localhost:3000",
-];
 app.use(cors());
 // logging
 app.use(morgan("tiny"));

@@ -16,7 +16,7 @@ const WebcamCapture = ({ image, setImage }) => {
     const imageSrc = webcamRef.current.getScreenshot();
 
     setImage(imageSrc);
-  }, []);
+  }, [setImage]);
 
   return (
     <div>
