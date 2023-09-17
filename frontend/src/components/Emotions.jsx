@@ -9,7 +9,7 @@ const Emotions = ({ emotionJSON }) => {
             const { name, score } = emotion;
             return (
               <div
-                className="grid grid-cols-3 text-[#F2EEE4] py-9 px-3 "
+                className="grid grid-cols-3 gap-1 text-[#F2EEE4] py-9 px-3 "
                 key={name}
               >
                 <div className="font-semibold justify-self-start">{name}</div>
