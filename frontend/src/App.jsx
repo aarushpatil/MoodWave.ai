@@ -8,6 +8,7 @@ import Generator from "./page/Generator";
 import Landing from "./page/Landing";
 import About from "./page/About";
 import NotFound from "./page/NotFound";
+import Footer from "./components/Footer";
 
 function App() {
   //trying to show different content other than the camera and capture button
@@ -27,7 +28,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* here is where I will put footer */}
+      <Footer />
     </BrowserRouter>
   );
 }

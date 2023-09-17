@@ -30,6 +30,7 @@ function Generator() {
   };
   const RedoButton = () => {
     setEmotionJSON([]);
+    setSongsJSON([]);
     setImage("");
     setPagination("webcam");
   };
@@ -44,7 +45,7 @@ function Generator() {
         try {
           console.log(image);
           const response = await axios.post(
-            "https://moodwave-adam.onrender.com/api/v1/image/url",
+            "http://localhost:4000/api/v1/image/url",
             { image: image }
           );
           console.log(response.headers);
@@ -54,7 +55,7 @@ function Generator() {
         } catch (error) {
           console.error("Error fetching emotion:", error);
         }
-        setSubmitImage(!submitImage);
+        setSubmitImage((image) => !image);
         setImage("");
       }
     }
@@ -67,26 +68,30 @@ function Generator() {
   useEffect(() => {
     //Function for backend call
     async function suggestSongs() {
-      if (emotionJSON.length > 0 && pagination === "songs" && submitSongs) {
-        console.log("image evaluating");
-
-        const response = await axios.post(
-          "https://moodwave-adam.onrender.com/api/v1/songs",
-          {
-            emotion: `${emotionJSON[0].name},${emotionJSON[0].name},${emotionJSON[0].name}`,
-          }
-        );
-
-        const data = response.data;
-        console.log(data);
-        setSongsJSON(data);
-        setSubmitSongs((show) => !show);
+      if (pagination === "songs") {
+        try {
+          console.log("song suggesting");
+          const response = await axios.post(
+            "http://localhost:4000/api/v1/songs",
+            {
+              // assuming you want to send the same emotion name three times
+              emotion: `${emotionJSON[0].name},${emotionJSON[1].name},${emotionJSON[2].name}`,
+            }
+          );
+          console.log("song suggesting");
+          console.log(response);
+          console.log(response.data);
+          setSongsJSON(response.data);
+          setSubmitSongs((prev) => !prev);
+        } catch (error) {
+          console.error("Error suggesting songs:", error);
+          // Handle the error appropriately, perhaps set some state to show an error message to the user
+        }
       }
     }
 
-    //Call function
     suggestSongs();
-  }, [emotionJSON, pagination, submitSongs]);
+  }, [pagination, emotionJSON]);
 
   return (
     <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
