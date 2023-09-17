@@ -23,25 +23,17 @@ function Generator() {
   const [songsJSON, setSongsJSON] = useState([]);
 
   const ScanButton = () => {
-    setShowCam(true);
-    setShowEmotion(false);
-    setShowSongs(false);
     setSubmitImage(!submitImage);
     setPagination("emotions");
   };
 
   const GenerateButton = () => {
-    setShowCam(false);
-    setShowEmotion(true);
-    setShowSongs(false);
     setSubmitSongs(!submitSongs);
     setPagination("songs");
   };
   const RedoButton = () => {
     setEmotionJSON([]);
-    setShowCam(false);
-    setShowEmotion(false);
-    setShowSongs(true);
+    setImage("");
     setPagination("webcam");
   };
 
@@ -52,14 +44,17 @@ function Generator() {
       if (image !== "" && pagination === "emotions" && submitImage) {
         console.log("image evaluating");
 
-        const response = await axios.post(
-          "http://localhost:4000/api/v1/image/url",
-          { image: image }
-        );
-
-        const data = response.data;
-        console.log(data);
-        setEmotionJSON(data);
+        try {
+          const response = await axios.post(
+            "http://localhost:4000/api/v1/image/url",
+            { image: image }
+          );
+          const data = response.data;
+          console.log("Received Data:", data);
+          setEmotionJSON(data);
+        } catch (error) {
+          console.error("Error fetching emotion:", error);
+        }
         setSubmitImage(!submitImage);
         setImage("");
       }

@@ -1,4 +1,4 @@
-import logo from "../moodwave.png";
+import logo from "../images/moodwave.png";
 function Banner() {
   return (
     <div className="flex items-center justify-center p-3 ">
