@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Pages
 import Generator from "./page/Generator";
 import Landing from "./page/Landing";
-import About from "./page/About";
+
 import NotFound from "./page/NotFound";
 import Footer from "./components/Footer";
 
@@ -25,7 +25,7 @@ function App() {
         <Route path="/generator" element={<Generator />} />
 
         {/* Extra pages */}
-        <Route path="/about" element={<About />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
