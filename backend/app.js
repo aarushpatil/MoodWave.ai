@@ -19,7 +19,7 @@ const bodyParser = require("body-parser");
 const Song = require("./routes/songRoute");
 const Image = require("./routes/imageRoute");
 
-app.use(cors());
+app.use(cors({ origin: "https://moodwave-ai-frontend.onrender.com" }));
 // logging
 app.use(morgan("tiny"));
 // middle ware activation
@@ -35,7 +35,7 @@ app.use(helmet());
 app.use(bodyParser.json({ limit: "20mb" }));
 app.use(express.json());
 app.use(express.static("./public"));
-app.use(fileUpload());
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
