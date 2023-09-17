@@ -16,7 +16,9 @@ const Songs = ({ songsJSON }) => {
                     className="w-full object-cover aspect-square rounded-xl hover:scale-105 duration-300"
                   />
                 </a>
-                <h1 className="text-xl">{title}</h1>
+                <a href={playUrl} className="text-xl">
+                  {title}
+                </a>
                 <p className="text-sm text-gray-400">{author}</p>
               </div>
             );
@@ -24,7 +26,7 @@ const Songs = ({ songsJSON }) => {
         </div>
       ) : (
         <div className=" p-36 py-56 w-full text-center">
-          <img src={loader} className=" animate-spin" />
+          <img src={loader} alt="loading screen" className=" animate-spin" />
         </div>
       )}
     </>
