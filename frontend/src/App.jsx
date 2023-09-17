@@ -1,10 +1,17 @@
 import "./App.css";
-import logo from "./moodwave.png";
+
+//React Router
+import { Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+
+//Pages
+
 import Cam from "./components/WebCamera";
 import { useState, useEffect } from "react";
 import Emotions from "./components/Emotions";
 import axios from "axios";
 import Songs from "./components/Songs";
+import Banner from "./components/MoodWaveBanner";
 function App() {
   // const [loading, setLoading] = useState(false);
   const [showEmotion, setShowEmotion] = useState(false);
@@ -14,7 +21,7 @@ function App() {
   const [image, setImage] = useState("");
   // const [showSongs, setShowSongs] = useState(false);
   const [emotionJSON, setEmotionJSON] = useState([]);
-
+  const [songsJSON, setSongsJSON] = useState([]);
   const State1 = () => {
     setShowCam(true);
     setShowEmotion(false);
@@ -57,6 +64,29 @@ function App() {
     //Call function
     evaluateEmotion();
   }, [image, setEmotionJSON, submitImage]);
+
+  useEffect(() => {
+    //Function for backend call
+    async function suggestSongs() {
+      if (emotionJSON) {
+        console.log("image evaluating");
+
+        const response = await axios.post(
+          "http://localhost:4000/api/v1/songs",
+          {
+            emotion: `${emotionJSON[0].name},${emotionJSON[0].name},${emotionJSON[0].name}`,
+          }
+        );
+
+        const data = response.data;
+        console.log(data);
+        setSongsJSON(data);
+      }
+    }
+
+    //Call function
+    suggestSongs();
+  }, [emotionJSON]);
   //trying to show different content other than the camera and capture button
   //the different content would be the data retrieved from api backend
 
@@ -65,14 +95,23 @@ function App() {
   //out of the outer-most div
 
   return (
-    <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/capture" element={<CapturePage />} />
+        <Route path="/emotions" element={<MoodsPage />} />
+        <Route path="/songs" element={<SongsPage />} />
+
+        {/* Extra pages */}
+        <Route path="/about" element={<AboutPage />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <div className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
-        <div className="flex items-center justify-center p-3 ">
-          <img src={logo} alt="moodwave" className=" max-w-10 max-h-20" />
-        </div>
+        <Banner />
 
         <div className="px-5 flex justify-center flex-col items-center">
-          <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 ">
+          <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
             {showCam ? (
               <Cam
                 setEmotionJSON={setEmotionJSON}
@@ -82,7 +121,7 @@ function App() {
             ) : showEmotion ? (
               <Emotions emotionJSON={emotionJSON} />
             ) : (
-              <Songs />
+              <Songs songsJSON={songsJSON} />
             )}
           </div>
 
@@ -122,7 +161,7 @@ function App() {
           )}
         </div>
       </div>
-    </>
+    </BrowserRouter>
   );
 }
 
