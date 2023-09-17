@@ -11,9 +11,6 @@ import SubSongs from "./subpage/Sub_Songs";
 function Generator() {
   // const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState("webcam");
-  const [showEmotion, setShowEmotion] = useState(false);
-  const [showSongs, setShowSongs] = useState(false);
-  const [showCam, setShowCam] = useState(true);
 
   const [submitSongs, setSubmitSongs] = useState(false);
   const [submitImage, setSubmitImage] = useState(false);
@@ -101,8 +98,6 @@ function Generator() {
             case "webcam":
               return (
                 <SubWebcam
-                  showCam={showCam}
-                  showEmotion={showEmotion}
                   ScanButton={ScanButton}
                   image={image}
                   setImage={setImage}
