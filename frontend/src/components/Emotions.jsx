@@ -1,17 +1,18 @@
 const Emotions = ({ emotionJSON }) => {
   return (
-    <div>
+    <div className="">
       {emotionJSON && emotionJSON.length > 0 ? (
         emotionJSON.map((emotion) => {
           const { name, score } = emotion;
           return (
-            <div
-              className="flex justify-between text-white gap-20 p-5 px-6"
-              key={name}
-            >
-              <div className="font-semibold">{name}</div>
-              <div className="font-semibold">_______________</div>
-              <div>{score}%</div>
+            <div className="grid grid-cols-3 text-white p-5 px-6 " key={name}>
+              <div className="font-semibold justify-self-start">{name}</div>
+              <div className="font-semibold justify-self-stretch">
+                <div className="bg-red-500">-</div>
+              </div>
+              <div className="font-semibold justify-self-end">
+                {Math.floor(score * 100)}%
+              </div>
             </div>
           );
         })
