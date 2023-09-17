@@ -22,7 +22,6 @@ const Image = require("./routes/imageRoute");
 const allowedOrigins = [
   "https://moodwave-ai-frontend.onrender.com",
   "http://localhost:3000",
-  "*",
 ];
 app.use(
   cors({
@@ -36,7 +35,6 @@ app.use(
       }
       return callback(null, true);
     },
-    credentials: true,
   })
 );
 // logging

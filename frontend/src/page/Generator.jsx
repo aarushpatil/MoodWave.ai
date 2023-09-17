@@ -45,6 +45,7 @@ function Generator() {
         console.log("image evaluating");
 
         try {
+          console.log(image);
           const response = await axios.post(
             "https://moodwave-adam.onrender.com/api/v1/image/url",
             { image: image }
