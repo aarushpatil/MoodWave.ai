@@ -4,7 +4,7 @@ const { Configuration, OpenAIApi } = require("openai");
 // require('dotenv').config()
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "process.env.OPENAIKEY",
 });
 
 const openai = new OpenAIApi(configuration);
@@ -51,5 +51,5 @@ const generateMeta = async (mood, previousSongs) => {
   return { titles, authors };
 };
 
-// generateMeta("happy")
+generateMeta("happy", ["yay"])
 module.exports = { generateMeta };

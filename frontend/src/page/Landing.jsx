@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import brainImage from "../images/brain-lateral.png";
+import moodwave from "../images/moodwave.png";
+import Navbar from "../components/Navbar";
 
 function Landing() {
   const navigate = useNavigate();
@@ -10,28 +11,11 @@ function Landing() {
   }
   return (
     <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
-      <div className="relative w-96 h-72 bg-black">
-        {/* Music Bars */}
-        {Array(5)
-          .fill(null)
-          .map((_, idx) => (
-            <div
-              key={idx}
-              className={`absolute bottom-0 w-5 h-full bg-green-500 animate-pulse delay-${
-                idx * 200
-              } animation-duration-1000`}
-              style={{ left: `${idx * 20}%` }}
-            ></div>
-          ))}
-
-        {/* Brain Image */}
-        <img
-          src={brainImage}
-          alt="Brain"
-          className="absolute w-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        />
+      <div className="flex justify-between items-center p-3 max-w-[1240px] mx-auto px-4">
+        <img src={moodwave} alt="moodwave" className=" max-w-10 max-h-20" />
+        <Navbar />
       </div>
-      <p>Mood wave is a cool thing</p>
+
       <div className="pt-10 flex justify-center">
         <button
           type="submit"
