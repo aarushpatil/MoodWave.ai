@@ -1,3 +1,5 @@
+import loader from "../images/reload.png";
+
 const Songs = ({ songsJSON }) => {
   return (
     <>
