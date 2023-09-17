@@ -1,17 +1,21 @@
 const readline = require("readline");
 //open ai configuration
+require("dotenv").config();
 const { Configuration, OpenAIApi } = require("openai");
 // require('dotenv').config()
 
 const configuration = new Configuration({
-  apiKey: "process.env.OPENAIKEY",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
 
 const generateMeta = async (mood, previousSongs) => {
-    let cont = `Give me a song about ${mood}. In the format: songName by songArtist. I already know these songs: ${(Array.from(previousSongs)).join(', ')}`;
-    // console.log(cont);
+  let cont = `Give me a song about ${mood}. In the format: songName by songArtist.`;
+  //    I already know these songs: ${Array.from(
+  //     previousSongs
+  //   ).join(", ")}`;
+  // console.log(cont);
 
   const songs = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -24,10 +28,10 @@ const generateMeta = async (mood, previousSongs) => {
     max_tokens: 250,
   });
   const response = songs.data.choices[0].message;
-//   console.log(response);
-//   console.log("          -          ");
-//   console.log("          -           ");
-//   console.log("          -          ");
+  //   console.log(response);
+  //   console.log("          -          ");
+  //   console.log("          -           ");
+  //   console.log("          -          ");
 
   // Split the input string into lines
   const lines = response.content
@@ -51,5 +55,5 @@ const generateMeta = async (mood, previousSongs) => {
   return { titles, authors };
 };
 
-generateMeta("happy", ["yay"])
+//generateMeta("happy", ["yay"]);
 module.exports = { generateMeta };

@@ -61,7 +61,6 @@ const song = async (req, res) => {
       const title = songDataList.titles[0]; //contains title
       const author = songDataList.authors[0]; //contains author
       previousSongs.add(title + " by " + author);
-      
 
       //make sure I can find the song
       let stuff = await getSongImages.getSongData(title, author);
@@ -86,13 +85,16 @@ const song = async (req, res) => {
 
   let objs = [];
   //make an array of objects now
-  for(let i = 0; i < images.length; i++)
-  {
-    objs.push({title: titless[i], author: authorss[i],imageUrl: images[i],playUrl: playURL[i]});
+  for (let i = 0; i < images.length; i++) {
+    objs.push({
+      title: titless[i],
+      author: authorss[i],
+      imageUrl: images[i],
+      playUrl: playURL[i],
+    });
   }
   // console.log(objs);
   res.status(200).json(objs);
 };
-song();
 
 module.exports = { song };
