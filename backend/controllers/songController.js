@@ -40,7 +40,7 @@ const getSongImages = require("../api/jioSong");
 // };
 
 const song = async (req, res) => {
-	let mood = "desire";
+	let mood = req.body.emotion;
 	let images = [];
 	let playURL = [];
 	let counter = 0;
@@ -76,7 +76,7 @@ const song = async (req, res) => {
 	}
 	console.log(images);
 	console.log(playURL);
-	return {images, playURL};
+	res.status(200).json({images, playURL});
 }
 song();
 // module.exports = {song};
