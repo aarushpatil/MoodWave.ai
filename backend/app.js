@@ -19,20 +19,10 @@ const bodyParser = require("body-parser");
 const Song = require("./routes/songRoute");
 const Image = require("./routes/imageRoute");
 
-// logging
-app.use(morgan("tiny"));
-// middle ware activation
-app.set("trust proxy", 1);
-app.use(
-  rateLimiter({
-    windowMs: 15 * 60 * 1000,
-    max: 150,
-  })
-);
-app.use(helmet());
 const allowedOrigins = [
-  "https://moodwave-ai-frontend.onrender.com/generator",
+  "https://moodwave-ai-frontend.onrender.com",
   "http://localhost:3000",
+  "*",
 ];
 app.use(
   cors({
@@ -49,6 +39,18 @@ app.use(
     credentials: true,
   })
 );
+// logging
+app.use(morgan("tiny"));
+// middle ware activation
+app.set("trust proxy", 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 150,
+  })
+);
+app.use(helmet());
+
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(express.json());
 app.use(express.static("./public"));
