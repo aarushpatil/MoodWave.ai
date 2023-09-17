@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Webcam from "react-webcam";
 import { AiOutlineCamera } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
-import { useEffect } from "react";
-import axios from "axios";
 
 const videoConstraints = {
   width: 10000,

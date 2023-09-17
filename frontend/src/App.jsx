@@ -1,62 +1,15 @@
 import "./App.css";
-import logo from "./moodwave.png";
-import Cam from "./components/WebCamera";
-import { useState, useEffect } from "react";
-import Emotions from "./components/Emotions";
-import axios from "axios";
-import Songs from "./components/Songs";
+
+//React Router
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+//Pages
+import Generator from "./page/Generator";
+import Landing from "./page/Landing";
+import About from "./page/About";
+import NotFound from "./page/NotFound";
+
 function App() {
-  // const [loading, setLoading] = useState(false);
-  const [showEmotion, setShowEmotion] = useState(false);
-  const [showSongs, setShowSongs] = useState(false);
-  const [showCam, setShowCam] = useState(true);
-  const [submitImage, setSubmitImage] = useState(false);
-  const [image, setImage] = useState("");
-  // const [showSongs, setShowSongs] = useState(false);
-  const [emotionJSON, setEmotionJSON] = useState([]);
-
-  const State1 = () => {
-    setShowCam(true);
-    setShowEmotion(false);
-    setShowSongs(false);
-    setImage("");
-  };
-
-  const State2 = () => {
-    setShowCam(false);
-    setShowEmotion(true);
-    setShowSongs(false);
-    setSubmitImage(!submitImage);
-  };
-  const State3 = () => {
-    setEmotionJSON([]);
-    setShowCam(false);
-    setShowEmotion(false);
-    setShowSongs(true);
-  };
-
-  //Make a call to the back
-  useEffect(() => {
-    //Function for backend call
-    async function evaluateEmotion() {
-      if (image !== "" && submitImage) {
-        console.log("image evaluating");
-
-        const response = await axios.post(
-          "http://localhost:4000/api/v1/image/url",
-          { image: image }
-        );
-
-        const data = response.data;
-        console.log(data);
-        setEmotionJSON(data);
-        setSubmitImage(!submitImage);
-      }
-    }
-
-    //Call function
-    evaluateEmotion();
-  }, [image, setEmotionJSON, submitImage]);
   //trying to show different content other than the camera and capture button
   //the different content would be the data retrieved from api backend
 
@@ -65,64 +18,16 @@ function App() {
   //out of the outer-most div
 
   return (
-    <>
-      <div className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
-        <div className="flex items-center justify-center p-3 ">
-          <img src={logo} alt="moodwave" className=" max-w-10 max-h-20" />
-        </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/generator" element={<Generator />} />
 
-        <div className="px-5 flex justify-center flex-col items-center">
-          <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
-            {showCam ? (
-              <Cam
-                setEmotionJSON={setEmotionJSON}
-                image={image}
-                setImage={setImage}
-              />
-            ) : showEmotion ? (
-              <Emotions emotionJSON={emotionJSON} />
-            ) : (
-              <Songs />
-            )}
-          </div>
-
-          {showCam ? (
-            <div className="pt-10 flex justify-center">
-              <button
-                type="submit"
-                id="login-button"
-                onClick={(e) => State2(e)}
-                className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-              >
-                Scan
-              </button>
-            </div>
-          ) : showEmotion && emotionJSON ? (
-            <div className="pt-10 flex justify-center">
-              <button
-                type="submit"
-                id="login-button"
-                onClick={(e) => State3(e)}
-                className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-              >
-                Generate
-              </button>
-            </div>
-          ) : (
-            <div className="pt-10 flex justify-center">
-              <button
-                type="submit"
-                id="login-button"
-                onClick={(e) => State1(e)}
-                className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-              >
-                Again
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </>
+        {/* Extra pages */}
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
