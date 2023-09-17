@@ -46,7 +46,7 @@ function Generator() {
 
         try {
           const response = await axios.post(
-            "http://localhost:4000/api/v1/image/url",
+            "https://moodwave-ai-frontend.onrender.com/api/v1/image/url",
             { image: image }
           );
           const data = response.data;
@@ -72,7 +72,7 @@ function Generator() {
         console.log("image evaluating");
 
         const response = await axios.post(
-          "http://localhost:4000/api/v1/songs",
+          "https://moodwave-ai-frontend.onrender.com/api/v1/songs",
           {
             emotion: `${emotionJSON[0].name},${emotionJSON[0].name},${emotionJSON[0].name}`,
           }
