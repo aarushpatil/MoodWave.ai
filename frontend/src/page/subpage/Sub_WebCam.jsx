@@ -10,16 +10,20 @@ function SubWebcam({ setEmotionJSON, image, setImage, ScanButton }) {
           setImage={setImage}
         />
       </div>
-      <div className="pt-10 flex justify-center">
-        <button
-          type="submit"
-          id="scan-button"
-          onClick={(e) => ScanButton(e)}
-          className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
-        >
-          Scan
-        </button>
-      </div>
+      {image !== "" ? (
+        <div className="pt-10 flex justify-center">
+          <button
+            type="submit"
+            id="scan-button"
+            onClick={(e) => ScanButton(e)}
+            className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
+          >
+            Scan
+          </button>
+        </div>
+      ) : (
+        <h1>Take a picture</h1>
+      )}
     </>
   );
 }
