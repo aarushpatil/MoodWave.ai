@@ -78,5 +78,4 @@ const song = async (req, res) => {
 	console.log(playURL);
 	res.status(200).json({images, playURL});
 }
-song();
 // module.exports = {song};
