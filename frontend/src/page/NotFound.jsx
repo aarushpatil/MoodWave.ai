@@ -1,7 +1,10 @@
 function NotFound() {
   return (
-    <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
-      <h1>Not Found</h1>;
+    <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen flex items-center justify-center">
+      <div className="text-center space-y-4">
+        <h1 className="text-6xl font-bold text-red-600">404</h1>
+        <p className="text-3xl font-medium white">Not Found</p>
+      </div>
     </main>
   );
 }
