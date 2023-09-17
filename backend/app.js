@@ -29,8 +29,7 @@ app.use(
     max: 150,
   })
 );
-//
-https: app.use(helmet());
+app.use(helmet());
 const allowedOrigins = [
   "https://moodwave-ai-frontend.onrender.com",
   "http://localhost:3000",
