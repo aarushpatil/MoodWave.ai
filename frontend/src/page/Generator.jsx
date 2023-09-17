@@ -50,6 +50,7 @@ function Generator() {
             "https://moodwave-adam.onrender.com/api/v1/image/url",
             { image: image }
           );
+          console.log(response.headers);
           const data = response.data;
           console.log("Received Data:", data);
           setEmotionJSON(data);
