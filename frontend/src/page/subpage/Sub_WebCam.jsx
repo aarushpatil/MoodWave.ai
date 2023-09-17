@@ -17,7 +17,7 @@ function SubWebcam({ setEmotionJSON, image, setImage, ScanButton }) {
           type="submit"
           id="scan-button"
           onClick={(e) => ScanButton(e)}
-          className={` bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold ${
+          className={` bg-button shadow-md px-8 py-2 rounded-full text-[#F2EEE4] font-Lato text-center text-lg font-bold ${
             image !== "" ? false : true ? "opacity-50" : "opacity-100"
           }`}
         >

@@ -9,7 +9,7 @@ function SubSongs({ RedoButton, songsJSON }) {
           type="submit"
           id="ScanButton"
           onClick={(e) => RedoButton(e)}
-          className=" bg-button shadow-md px-8 py-2 rounded-full text-white font-Lato text-center text-lg font-bold"
+          className=" bg-button shadow-md px-8 py-2 rounded-full text-[#F2EEE4] font-Lato text-center text-lg font-bold"
         >
           Again
         </button>

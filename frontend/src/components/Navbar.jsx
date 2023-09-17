@@ -1,5 +1,5 @@
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import moodwave from "../images/moodwave.png";
+import moodwave from "../images/moodwave2.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="text-white">
+    <div className="text-[#F2EEE4]">
       <ul className="hidden md:flex">
         <li className="p-4">
           <Link to="/">Home</Link>
@@ -33,7 +33,7 @@ const Navbar = () => {
         <img
           src={moodwave}
           alt="moodwave"
-          className=" max-w-10 max-h-20 pl-3"
+          className=" max-w-10 max-h-20 pl-2"
         />
 
         <ul className=" uppercase">

@@ -7,7 +7,10 @@ const Emotions = ({ emotionJSON }) => {
         emotionJSON.map((emotion) => {
           const { name, score } = emotion;
           return (
-            <div className="grid grid-cols-3 text-white py-9 px-6 " key={name}>
+            <div
+              className="grid grid-cols-3 text-[#F2EEE4] py-9 px-6 "
+              key={name}
+            >
               <div className="font-semibold justify-self-start">{name}</div>
               <div className="font-semibold justify-self-stretch">
                 <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">

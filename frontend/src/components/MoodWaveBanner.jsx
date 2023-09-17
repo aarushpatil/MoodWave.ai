@@ -1,4 +1,4 @@
-import logo from "../images/moodwave.png";
+import logo from "../images/moodwave2.png";
 import Nav from "../components/Navbar";
 function Banner() {
   return (
