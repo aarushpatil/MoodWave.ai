@@ -22,7 +22,7 @@ const Image = require("./routes/imageRoute");
 // logging
 app.use(morgan("tiny"));
 // middle ware activation
-app.set("trust proxy", 1);
+
 app.use(
   rateLimiter({
     windowMs: 15 * 60 * 1000,
@@ -31,7 +31,7 @@ app.use(
 );
 app.use(helmet());
 const allowedOrigins = [
-  "https://moodwave-ai-frontend.onrender.com",
+  "https://moodwave-ai-frontend.onrender.com/generator",
   "http://localhost:3000",
 ];
 app.use(
