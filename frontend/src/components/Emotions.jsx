@@ -10,7 +10,9 @@ const Emotions = ({ emotionJSON }) => {
             <div className="grid grid-cols-3 text-white py-9 px-6 " key={name}>
               <div className="font-semibold justify-self-start">{name}</div>
               <div className="font-semibold justify-self-stretch">
-                <div className="bg-red-500">-</div>
+                <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div className ={`h-full bg-green-500 ${dynamicWidth}`} style={{ width: `${Math.floor(score * 100)}%` }}> </div>
+                </div>
               </div>
               <div className="font-semibold justify-self-end">
                 {Math.floor(score * 100)}%
@@ -26,5 +28,17 @@ const Emotions = ({ emotionJSON }) => {
     </div>
   );
 };
+
+const score = 0.75; // Replace this with your score value
+
+function MyComponent() {
+  const dynamicWidth = `${Math.floor(score * 100)}%`;
+
+  return (
+    <div style={{ width: dynamicWidth }}>
+      {/* Your content here */}
+    </div>
+  );
+}
 
 export default Emotions;
