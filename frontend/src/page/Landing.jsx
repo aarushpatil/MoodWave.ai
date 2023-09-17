@@ -1,9 +1,9 @@
 function Landing() {
   return (
-    <h1>
+    <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
       This is the landing page. Add /generator to the end of the localhost or
       domain name
-    </h1>
+    </main>
   );
 }
 export default Landing;
