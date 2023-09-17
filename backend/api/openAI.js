@@ -1,17 +1,22 @@
 const readline = require("readline");
 //open ai configuration
+require("dotenv").config();
 const { Configuration, OpenAIApi } = require("openai");
 // require('dotenv').config()
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
 
 const generateMeta = async (mood, previousSongs) => {
-    let cont = `Give me a song about ${mood}. In the format: songName by songArtist. I already know these songs: ${(Array.from(previousSongs)).join(', ')}`;
-    // console.log(cont);
+  console.log("Enter song method");
+  let cont = `Give me 60 songs about ${mood}. In the format: songName by songArtist, songName by songArtist.`;
+  //    I already know these songs: ${Array.from(
+  //     previousSongs
+  //   ).join(", ")}`;
+  // console.log(cont);
 
   const songs = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -23,11 +28,12 @@ const generateMeta = async (mood, previousSongs) => {
     ],
     max_tokens: 250,
   });
+  console.log("after chatgpt");
   const response = songs.data.choices[0].message;
-//   console.log(response);
-//   console.log("          -          ");
-//   console.log("          -           ");
-//   console.log("          -          ");
+  //   console.log(response);
+  //   console.log("          -          ");
+  //   console.log("          -           ");
+  //   console.log("          -          ");
 
   // Split the input string into lines
   const lines = response.content
@@ -41,9 +47,12 @@ const generateMeta = async (mood, previousSongs) => {
   lines.forEach((line) => {
     const tempArr = line.split('"');
     titles.push(tempArr[1]);
-
-    const temp2 = tempArr[2].split("by ");
-    authors.push(temp2[1]);
+    try {
+      const temp2 = tempArr[2].split("by ");
+      authors.push(temp2[1]);
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   // console.log(titles)
@@ -51,5 +60,5 @@ const generateMeta = async (mood, previousSongs) => {
   return { titles, authors };
 };
 
-// generateMeta("happy")
+//generateMeta("happy", ["yay"]);
 module.exports = { generateMeta };
