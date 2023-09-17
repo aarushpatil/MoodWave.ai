@@ -26,45 +26,56 @@ const image = async (req, res) => {
 };
 
 //Upload the image to use in the url
+const fsPromises = fs.promises;
+
 const imageURL = async (req, res) => {
-  // Use the uploaded file's name as the asset's public ID and
-  // allow overwriting the asset with new versions
-  //Base conversion and storage of tempPhotos
-  var base64Str = req.body.image;
   const imagePath = path.join(__dirname, "../temp/");
   var optionalObj = { type: "jpg" };
-  const imageInfo = base64ToImage(base64Str, imagePath, optionalObj);
+  const imageInfo = base64ToImage(req.body.image, imagePath, optionalObj);
 
-  const { imageType, fileName } = imageInfo;
-  //Upload file
+  const { fileName } = imageInfo;
   const imageToUpload = imagePath + fileName;
   const options = {
     use_filename: true,
     unique_filename: false,
     overwrite: true,
   };
-  let result;
+
+  let cloudinary_url, emotion;
+
   try {
-    // Upload the image
-    result = await cloudinary.uploader.upload(imageToUpload, options);
+    // Upload the image to Cloudinary
+    const result = await cloudinary.uploader.upload(imageToUpload, options);
+    cloudinary_url = result.url;
+
+    // Process the image with Hume API
+    const job_id = await hume.startJobURL(cloudinary_url);
+    console.log("Job ID:", job_id);
+
+    emotion = await new Promise((resolve) => {
+      setTimeout(async () => {
+        const predictions = await hume.getPredictionsURL(job_id);
+        resolve(predictions);
+      }, 4000);
+    });
+
+    console.log(emotion);
+    res.send(emotion);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    // Remove the temporary file
+    try {
+      await fsPromises.unlink(imageToUpload);
+      console.log(`Successfully deleted temporary file: ${imageToUpload}`);
+    } catch (unlinkError) {
+      console.error(
+        `Failed to delete temporary file: ${imageToUpload}. Error:`,
+        unlinkError
+      );
+    }
   }
-
-  const cloudinary_url = result.url;
-
-  const job_id = await hume.startJobURL(cloudinary_url);
-  console.log("Job ID:", job_id);
-
-  // Wait for the predictions to be ready
-  const emotion = await new Promise((resolve) => {
-    setTimeout(async () => {
-      const predictions = await hume.getPredictionsURL(job_id);
-      resolve(predictions);
-    }, 4000);
-  });
-  console.log(emotion);
-  res.send(emotion);
 };
 
 module.exports = {
