@@ -29,10 +29,15 @@ app.use(
     max: 150,
   })
 );
-app.use(helmet());
+//
+https: app.use(helmet());
+const allowedOrigins = [
+  "https://moodwave-ai-frontend.onrender.com",
+  "http://localhost:3000",
+];
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
