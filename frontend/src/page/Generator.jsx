@@ -68,7 +68,7 @@ function Generator() {
   useEffect(() => {
     //Function for backend call
     async function suggestSongs() {
-      if (pagination === "songs") {
+      if (pagination === "songs" && submitSongs) {
         try {
           console.log("song suggesting");
           const response = await axios.post(

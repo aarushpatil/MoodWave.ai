@@ -11,7 +11,8 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const generateMeta = async (mood, previousSongs) => {
-  let cont = `Give me a song about ${mood}. In the format: songName by songArtist.`;
+  console.log("Enter song method");
+  let cont = `Give me 60 songs about ${mood}. In the format: songName by songArtist, songName by songArtist.`;
   //    I already know these songs: ${Array.from(
   //     previousSongs
   //   ).join(", ")}`;
@@ -27,6 +28,7 @@ const generateMeta = async (mood, previousSongs) => {
     ],
     max_tokens: 250,
   });
+  console.log("after chatgpt");
   const response = songs.data.choices[0].message;
   //   console.log(response);
   //   console.log("          -          ");
@@ -45,9 +47,12 @@ const generateMeta = async (mood, previousSongs) => {
   lines.forEach((line) => {
     const tempArr = line.split('"');
     titles.push(tempArr[1]);
-
-    const temp2 = tempArr[2].split("by ");
-    authors.push(temp2[1]);
+    try {
+      const temp2 = tempArr[2].split("by ");
+      authors.push(temp2[1]);
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   // console.log(titles)

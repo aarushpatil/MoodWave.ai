@@ -12,7 +12,6 @@ const song = async (req, res) => {
   console.log(songDataList.authors, songDataList.titles);
   const titles = songDataList.titles;
   const authors = songDataList.authors;
-  
 
   let images = [];
   for (let i = 0; i < titles.length; i++) {
@@ -26,14 +25,18 @@ const song = async (req, res) => {
 
   let objs = [];
   //make an array of objects now
-  for(let i = 0; i < images.length; i++)
-  {
-    if(images[i] != null)
-    {
-        objs.push({title: titles[i], author: authors[i],imageUrl: images[i].img, playURL: images[i].downloadUrl});
+  for (let i = 0; i < images.length; i++) {
+    if (images[i] != null) {
+      objs.push({
+        title: titles[i],
+        author: authors[i],
+        imageUrl: images[i].img,
+        playURL: images[i].downloadUrl,
+      });
     }
   }
   // console.log(objs);
+
   res.status(200).json(objs);
 };
 
@@ -60,7 +63,6 @@ const song = async (req, res) => {
 //       const title = songDataList.titles[0]; //contains title
 //       const author = songDataList.authors[0]; //contains author
 //       previousSongs.add(title + " by " + author);
-      
 
 //       //make sure I can find the song
 //       let stuff = await getSongImages.getSongData(title, author);
@@ -83,12 +85,12 @@ const song = async (req, res) => {
 //   // console.log(titless);
 //   // console.log(authorss);
 
-  // let objs = [];
-  // //make an array of objects now
-  // for(let i = 0; i < images.length; i++)
-  // {
-  //   objs.push({title: titless[i], author: authorss[i],imageUrl: images[i],playUrl: playURL[i]});
-  // }
+// let objs = [];
+// //make an array of objects now
+// for(let i = 0; i < images.length; i++)
+// {
+//   objs.push({title: titless[i], author: authorss[i],imageUrl: images[i],playUrl: playURL[i]});
+// }
 //   // console.log(objs);
 //   res.status(200).json(objs);
 // };
