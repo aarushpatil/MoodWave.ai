@@ -2,8 +2,8 @@ import Cam from "../../components/WebCamera";
 
 function SubWebcam({ setEmotionJSON, image, setImage, ScanButton }) {
   return (
-    <>
-      <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 w-full">
+    <div className="pt-10">
+      <div className=" backdrop-blur-sm bg-white/10 rounded-3xl p-4 max-w-xl sm:max-w-xl md:max-w-xl">
         <Cam
           setEmotionJSON={setEmotionJSON}
           image={image}
@@ -24,7 +24,7 @@ function SubWebcam({ setEmotionJSON, image, setImage, ScanButton }) {
           Scan
         </button>
       </div>
-    </>
+    </div>
   );
 }
 export default SubWebcam;

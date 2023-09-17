@@ -6,7 +6,7 @@ import { BsGlobe } from "react-icons/bs";
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-6">
-      <div className="container mx-auto text-center footer-content">
+      <div className="flex justify-center flex-col items-center">
         <p className="mb-4">&copy; Moodwave.ai</p>
         <div className="flex text-xl justify-center gap-5">
           <a href="https://www.instagram.com/vthacks/?hl=en" target="_blank">

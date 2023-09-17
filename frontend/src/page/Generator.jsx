@@ -94,10 +94,10 @@ function Generator() {
   }, [pagination, emotionJSON]);
 
   return (
-    <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop h-screen overflow-auto pb-9">
+    <main className="bg-gradient-to-r from-backgradientbot to-backgradienttop overflow-hidden pb-9 flex flex-col">
       <Banner />
 
-      <section className="px-5 flex justify-center flex-col items-center">
+      <section className="px-5 flex justify-center flex-col items-center flex-grow">
         {(() => {
           switch (pagination) {
             case "webcam":

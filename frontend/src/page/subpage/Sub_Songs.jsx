@@ -2,7 +2,7 @@ import Songs from "../../components/Songs";
 
 function SubSongs({ RedoButton, songsJSON }) {
   return (
-    <>
+    <div className="pt-10">
       <Songs songsJSON={songsJSON} />
       <div className="pt-10 flex justify-center">
         <button
@@ -14,7 +14,7 @@ function SubSongs({ RedoButton, songsJSON }) {
           Again
         </button>
       </div>
-    </>
+    </div>
   );
 }
 export default SubSongs;
