@@ -36,7 +36,7 @@ app.use(
 );
 app.use(helmet());
 
-app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.json({ limit: "20mb" }));
 app.use(express.json());
 app.use(express.static("./public"));
 app.use(fileUpload());
