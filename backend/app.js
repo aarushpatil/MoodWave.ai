@@ -19,6 +19,7 @@ const bodyParser = require("body-parser");
 const Song = require("./routes/songRoute");
 const Image = require("./routes/imageRoute");
 
+app.use(cors());
 // logging
 app.use(morgan("tiny"));
 // middle ware activation
@@ -30,26 +31,8 @@ app.use(
   })
 );
 app.use(helmet());
-const allowedOrigins = [
-  "https://moodwave-ai-frontend.onrender.com/generator",
-  "http://localhost:3000",
-];
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-    credentials: true,
-  })
-);
-app.use(bodyParser.json({ limit: "10mb" }));
+
+app.use(bodyParser.json({ limit: "20mb" }));
 app.use(express.json());
 app.use(express.static("./public"));
 app.use(fileUpload());

@@ -25,7 +25,7 @@ async function getSongData(songName, artistName) {
 
   // Create the final URL by appending the serialized parameters
   const finalUrl = `${apiUrl}?${serializedParams}`;
-  // console.log(finalUrl);
+  // console.log("FINALLLL URLLLL: *************: " + finalUrl);
 
   try {
     const response = await axios.get(finalUrl);
@@ -36,22 +36,27 @@ async function getSongData(songName, artistName) {
       const artist = song.primaryArtists;
 
       // Iterate through the artists and check if they match
+      // console.log(song);
       const artistArray = artist.split(", ");
       for (let k = 0; k < artistArray.length; k++) {
+        // console.log("artist name: " + artistName)
+        // console.log("artistarray[k]: " + artistArray[k].replace(/&amp;/g, 'and'))
         if (artistArray[k].replace(/&amp;/g, 'and') === artistName) {
           // Return the link here
           const imagesOfSameSong = response.data.data.results[i].image;
-          const link = "" + imagesOfSameSong[imagesOfSameSong.length - 1].link;
-          return link;
+          const img = "" + imagesOfSameSong[imagesOfSameSong.length - 1].link;
+
+          const linksOfSameSong = response.data.data.results[i].downloadUrl;
+          const downloadUrl = "" + linksOfSameSong[linksOfSameSong.length - 1].link;
+          return {img, downloadUrl};
         }
       }
     }
 
-    console.log("\n No song with that artist was found :(");
+    // console.log("\n No song with that artist was found :(");
     return null; // Return null if no match is found
   } catch (error) {
-    console.error('Error:', error);
-    throw error; // Throw the error to be caught by the caller
+    // console.error('Error:', error);
   }
 }
 

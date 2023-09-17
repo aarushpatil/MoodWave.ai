@@ -11,9 +11,6 @@ import SubSongs from "./subpage/Sub_Songs";
 function Generator() {
   // const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState("webcam");
-  const [showEmotion, setShowEmotion] = useState(false);
-  const [showSongs, setShowSongs] = useState(false);
-  const [showCam, setShowCam] = useState(true);
 
   const [submitSongs, setSubmitSongs] = useState(false);
   const [submitImage, setSubmitImage] = useState(false);
@@ -45,10 +42,12 @@ function Generator() {
         console.log("image evaluating");
 
         try {
+          console.log(image);
           const response = await axios.post(
-            "https://moodwave-ai-frontend.onrender.com/api/v1/image/url",
+            "https://moodwave-adam.onrender.com/api/v1/image/url",
             { image: image }
           );
+          console.log(response.headers);
           const data = response.data;
           console.log("Received Data:", data);
           setEmotionJSON(data);
@@ -72,7 +71,7 @@ function Generator() {
         console.log("image evaluating");
 
         const response = await axios.post(
-          "https://moodwave-ai-frontend.onrender.com/api/v1/songs",
+          "https://moodwave-adam.onrender.com/api/v1/songs",
           {
             emotion: `${emotionJSON[0].name},${emotionJSON[0].name},${emotionJSON[0].name}`,
           }
@@ -99,8 +98,6 @@ function Generator() {
             case "webcam":
               return (
                 <SubWebcam
-                  showCam={showCam}
-                  showEmotion={showEmotion}
                   ScanButton={ScanButton}
                   image={image}
                   setImage={setImage}
