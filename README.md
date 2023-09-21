@@ -14,6 +14,10 @@ The primary goals of this project are:
 
 Try it here: https://moodwave-ai-frontend.onrender.com/
 
+## Devpost
+
+Link: https://devpost.com/software/moodwave-ai
+
 ## Features
 
 - Real-time facial emotion analysis using AI.
