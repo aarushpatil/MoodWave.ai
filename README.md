@@ -12,7 +12,11 @@ The primary goals of this project are:
 
 ## Demo
 
-[Include a link to a video or live demo showcasing your project in action.]
+Try it here: https://moodwave-ai-frontend.onrender.com/
+
+## Devpost
+
+Link: https://devpost.com/software/moodwave-ai
 
 ## Features
 

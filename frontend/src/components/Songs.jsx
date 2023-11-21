@@ -7,18 +7,18 @@ const Songs = ({ songsJSON }) => {
         <div className="font-Lato grid grid-rows-3 grid-cols-2 w-full gap-4 text-white md:grid-rows-2 md:grid-cols-3">
           {songsJSON.map((song) => {
             console.log(song);
-            const { id, author, imageUrl, playUrl, title } = song;
-            console.log(playUrl);
+            const { author, imageUrl, playURL, title } = song;
+
             return (
-              <div className="flex flex-col items-center" key={id}>
-                <a href={playUrl}>
+              <div className="flex flex-col items-center" key={author}>
+                <a target="_blank" href={playURL}>
                   <img
                     src={imageUrl}
                     alt={`${title} by ${author}`}
                     className="w-full object-cover aspect-square rounded-xl hover:scale-105 duration-300"
                   />
                 </a>
-                <a href={playUrl} className="text-xl">
+                <a target="_blank" href={playURL} className="text-xl">
                   {title}
                 </a>
                 <p className="text-sm text-gray-400">{author}</p>
